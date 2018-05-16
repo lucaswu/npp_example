@@ -12,13 +12,8 @@ using namespace cv;
 #define PLAN
 int main(int argc, char**argv)
 {
-	Npp8u*data = NULL;
-	int nPitch;
-	data = nppiMalloc_8u_C1(64,64,&nPitch);
-	printf("nPitch=%d\n",nPitch);
 
-
-	 cv::Mat img = imread(argv[1]);
+	cv::Mat img = imread(argv[1]);
     int height = img.rows;
     int width = img.cols;
     
@@ -91,5 +86,11 @@ int main(int argc, char**argv)
 #endif
     imwrite(argv[2],outMat);
 
+
+    free(inData);
+    free(outData);
+
+    cudaFree(gpuSrc);
+    cudaFree(gpuDst);
 	return 0;
 }
