@@ -1,1 +1,1 @@
-npp_example
+example of CUDA NPP library
