@@ -13,7 +13,7 @@ using namespace cv;
 int main(int argc, char**argv)
 {
 
-	cv::Mat img = imread(argv[1]);
+    cv::Mat img = imread(argv[1]);
     int height = img.rows;
     int width = img.cols;
     
@@ -92,5 +92,5 @@ int main(int argc, char**argv)
 
     cudaFree(gpuSrc);
     cudaFree(gpuDst);
-	return 0;
+    return 0;
 }
