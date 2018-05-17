@@ -66,9 +66,9 @@ int main(int argc, char**argv)
     pBlue 	= (float*)pGreen + width*height*16;
     Npp32f* dstPtr[3] = {(Npp32f*)pRed,(Npp32f*)pGreen,(Npp32f*)pBlue};
 
-    nppiResize_32f_P3R(srcPtr,width*4,srcSize,srcROI,dstPtr,width*4*4,{width*4, height*4},dstROI,NPPI_INTER_LINEAR);
+    nppiResize_32f_P3R(srcPtr,width*sizeof(Npp32f),srcSize,srcROI,dstPtr,width*4*sizeof(Npp32f),{width*4, height*4},dstROI,NPPI_INTER_LINEAR);
 #else
-    nppiResize_32f_C3R((Npp32f*)gpuSrc,width*3*4,srcSize,srcROI,(Npp32f*)gpuDst,width*4*3*4,{width*4, height*4},dstROI,NPPI_INTER_LINEAR);
+    nppiResize_32f_C3R((Npp32f*)gpuSrc,width*3*sizeof(Npp32f),srcSize,srcROI,(Npp32f*)gpuDst,width*4*3*sizeof(Npp32f),{width*4, height*4},dstROI,NPPI_INTER_LINEAR);
 #endif
     cudaMemcpy(outData,gpuDst,size*16,cudaMemcpyDeviceToHost);
 
